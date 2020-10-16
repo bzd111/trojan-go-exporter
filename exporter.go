@@ -66,7 +66,6 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	if err := e.scrapeTrojanGo(ch); err != nil {
 		log.Warnf("Scrape failed! %s", err)
 	}
-
 	ch <- e.totalScrapes
 }
 
@@ -75,7 +74,6 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	for _, desc := range e.metricDescriptions {
 		ch <- desc
 	}
-
 	ch <- e.totalScrapes.Desc()
 }
 
@@ -95,7 +93,6 @@ func (e *Exporter) scrapeTrojanGo(ch chan<- prometheus.Metric) error {
 	if err := e.scrapeTrojanGoMetrics(ctx, ch, client); err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -122,15 +119,13 @@ func (e *Exporter) scrapeTrojanGoMetrics(ctx context.Context, ch chan<- promethe
 		speedCureent := resp.Status.SpeedCurrent
 		if speedCureent != nil {
 			uploadSpeed := speedCureent.UploadSpeed
-			e.registerConstMetricGauge(ch, "current_upload_speed", float64(uploadSpeed))
+			e.registerConstMetricGauge(ch, "current_upload_speed", float64(uploadSpeed), userHash)
 			downloadSpeed := speedCureent.DownloadSpeed
-			e.registerConstMetricGauge(ch, "current_download_speed", float64(downloadSpeed))
+			e.registerConstMetricGauge(ch, "current_download_speed", float64(downloadSpeed), userHash)
 		} else {
-			e.registerConstMetricGauge(ch, "current_upload_speed", 0)
-			e.registerConstMetricGauge(ch, "current_download_speed", 0)
-
+			e.registerConstMetricGauge(ch, "current_upload_speed", 0, userHash)
+			e.registerConstMetricGauge(ch, "current_download_speed", 0, userHash)
 		}
-
 	}
 	return nil
 }
