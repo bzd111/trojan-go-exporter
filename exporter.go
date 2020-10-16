@@ -43,11 +43,11 @@ func NewExporter(endpoint string, scrapeTimeout time.Duration) *Exporter {
 		txt  string
 		lbls []string
 	}{
-		"scrape_duration_seconds": {txt: "Scrape duration in seconds"},
-		"upload_traffic_total":    {txt: "Number of transmitted bytes", lbls: []string{"target"}},
-		"download_traffic_total":  {txt: "Number of receieved bytes", lbls: []string{"target"}},
-		"current_upload_speed":    {txt: "Number of current upload speed bytes", lbls: []string{"target"}},
-		"current_download_speed":  {txt: "Number of current download speed bytes", lbls: []string{"target"}},
+		"scrape_duration_seconds":      {txt: "Scrape duration in seconds"},
+		"upload_traffic_bytes_total":   {txt: "Number of transmitted bytes", lbls: []string{"target"}},
+		"download_traffic_bytes_total": {txt: "Number of receieved bytes", lbls: []string{"target"}},
+		"current_upload_speed":         {txt: "Number of current upload speed bytes", lbls: []string{"target"}},
+		"current_download_speed":       {txt: "Number of current download speed bytes", lbls: []string{"target"}},
 	} {
 		e.metricDescriptions[k] = e.newMetricDescr(k, desc.txt, desc.lbls)
 	}
