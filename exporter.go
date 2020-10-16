@@ -125,7 +125,12 @@ func (e *Exporter) scrapeTrojanGoMetrics(ctx context.Context, ch chan<- promethe
 			e.registerConstMetricGauge(ch, "current_upload_speed", float64(uploadSpeed))
 			downloadSpeed := speedCureent.DownloadSpeed
 			e.registerConstMetricGauge(ch, "current_download_speed", float64(downloadSpeed))
+		} else {
+			e.registerConstMetricGauge(ch, "current_upload_speed", 0)
+			e.registerConstMetricGauge(ch, "current_download_speed", 0)
+
 		}
+
 	}
 	return nil
 }
@@ -155,5 +160,5 @@ func (e *Exporter) registerConstMetric(ch chan<- prometheus.Metric, metric strin
 }
 
 func (e *Exporter) newMetricDescr(metricName string, docString string, labels []string) *prometheus.Desc {
-	return prometheus.NewDesc(prometheus.BuildFQName("trogan_go", "", metricName), docString, labels, nil)
+	return prometheus.NewDesc(prometheus.BuildFQName("trojan_go", "", metricName), docString, labels, nil)
 }
