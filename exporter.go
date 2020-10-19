@@ -113,9 +113,9 @@ func (e *Exporter) scrapeTrojanGoMetrics(ctx context.Context, ch chan<- promethe
 	for _, resp := range result {
 		userHash := resp.Status.User.Hash
 		uploadTraffic := resp.Status.TrafficTotal.UploadTraffic
-		e.registerConstMetricGauge(ch, "upload_traffic_total", float64(uploadTraffic), userHash)
+		e.registerConstMetricGauge(ch, "upload_traffic_bytes_total", float64(uploadTraffic), userHash)
 		downloadTraffic := resp.Status.TrafficTotal.DownloadTraffic
-		e.registerConstMetricGauge(ch, "download_traffic_total", float64(downloadTraffic), userHash)
+		e.registerConstMetricGauge(ch, "download_traffic_bytes_total", float64(downloadTraffic), userHash)
 		speedCureent := resp.Status.SpeedCurrent
 		if speedCureent != nil {
 			uploadSpeed := speedCureent.UploadSpeed
