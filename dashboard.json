@@ -64,7 +64,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "trojan_go_upload_traffic_total",
+          "expr": "trojan_go_upload_traffic_bytes_total",
           "interval": "",
           "legendFormat": "{{target}}",
           "refId": "A"
@@ -157,7 +157,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "trogan_go_download_traffic_total",
+          "expr": "trojan_go_download_traffic_bytes_total",
           "interval": "",
           "legendFormat": "{{target}}",
           "refId": "A"
@@ -406,6 +406,7 @@
       "type": "row"
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -413,8 +414,8 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2020-10-19T08:51:11.485Z",
+    "to": "2020-10-19T08:56:11.485Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -431,7 +432,7 @@
     ]
   },
   "timezone": "",
-  "title": "trojan-go",
+  "title": "Trojan-Go Dashboard",
   "uid": "UnXKtlcGz",
-  "version": 3
+  "version": 4
 }
