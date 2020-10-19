@@ -17,3 +17,6 @@ trojan-go-exporter
 
 # vscode
 .vscode
+
+# dist
+dist/*
