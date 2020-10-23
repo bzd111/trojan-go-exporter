@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trojan-go-exporter
+  namespace: zidy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trojan-go-exporter
+  template:
+    metadata:
+      labels:
+        app: trojan-go-exporter
+    spec:
+      containers:
+        - name: trojan-go-exporter
+          image: zidy/trojan-go-exporter:0.0.1
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          ports:
+            - name: metrics
+              containerPort: 9550
