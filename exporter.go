@@ -135,11 +135,6 @@ func (e *Exporter) registerConstMetricGauge(ch chan<- prometheus.Metric, metric 
 	e.registerConstMetric(ch, metric, val, prometheus.GaugeValue, labels...)
 }
 
-// register Const Metric Counter
-func (e *Exporter) registerConstMetricCounter(ch chan<- prometheus.Metric, metric string, val float64, labels ...string) {
-	e.registerConstMetric(ch, metric, val, prometheus.CounterValue, labels...)
-}
-
 // register Const Metric
 func (e *Exporter) registerConstMetric(ch chan<- prometheus.Metric, metric string, val float64, valType prometheus.ValueType, labelValues ...string) {
 	descr := e.metricDescriptions[metric]

@@ -1,14 +1,13 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"os"
-	"os/exec"
 	"time"
 
 	"github.com/jessevdk/go-flags"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	log "github.com/sirupsen/logrus"
 )
 
 var opts struct {
@@ -29,19 +28,15 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	opts.Call = func(num string) {
-		cmd := exec.Command("open", "callto:"+num)
-		cmd.Start()
-		cmd.Process.Release()
-	}
-
 	if _, err := flags.Parse(&opts); err != nil {
 		os.Exit(0)
 	}
+
 	scrapeTimeout := time.Duration(opts.ScrapeTimeoutInSeconds) * time.Second
 	exporter = NewExporter(opts.V2RayEndpoint, scrapeTimeout)
 	http.Handle("/metrics", promhttp.Handler())
 	http.HandleFunc("/scrape", scrapeHandler)
 
+	log.Infof("Server is ready to handle incoming scrape requests.")
 	log.Fatal(http.ListenAndServe(opts.Listen, nil))
 }
