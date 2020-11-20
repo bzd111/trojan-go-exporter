@@ -5,7 +5,7 @@ COMMIT        = $(shell git rev-parse --short HEAD)
 FULL_COMMIT   = $(shell git rev-parse HEAD)
 RELEASE_NOTES = `git log ${LAST_TAG}..HEAD --oneline --decorate`
 DATE          = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
-DOCKER_REPO   = bzd111/trojan-go-exporter
+DOCKER_REPO   = zidy/trojan-go-exporter
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
 

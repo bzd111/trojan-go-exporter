@@ -21,3 +21,11 @@ you need to make sure add api config to your config file. For example.
   }
 }
 ```
+
+### Grafana Dashboard
+
+A simple Grafana dashboard is also available [here][https://raw.githubusercontent.com/bzd111/trojan-go-exporter/master/dashboard.json].
+
+## Special Thanks
+
+- <https://github.com/wi1dcard/v2ray-exporter>
